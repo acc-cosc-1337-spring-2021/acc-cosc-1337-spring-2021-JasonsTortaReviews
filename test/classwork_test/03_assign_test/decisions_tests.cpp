@@ -2,9 +2,9 @@
 #include "catch.hpp"
 #include "loops.h"
 #include "decision.h"
-//TEST_CASE("Verify Test Configuration", "verification") {
-///	REQUIRE(true == true);
-//}
+TEST_CASE("Verify Test Configuration", "verification") {
+	REQUIRE(true == true);
+}
 
 
 TEST_CASE("Verify that get_letter_grade_using_if works")
