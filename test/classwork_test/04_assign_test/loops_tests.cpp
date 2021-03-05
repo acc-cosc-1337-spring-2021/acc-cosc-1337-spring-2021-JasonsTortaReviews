@@ -2,7 +2,15 @@
 #include "catch.hpp"
 #include "loops.h"
 
+
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
 }
 
+TEST_CASE("Verify that Factorial wihtout recursion works")
+{
+	REQUIRE(factorial(5)==120);
+	REQUIRE(factorial(6)==720);
+	REQUIRE(factorial(3)==6);
+	REQUIRE(factorial(4)==24);
+}
