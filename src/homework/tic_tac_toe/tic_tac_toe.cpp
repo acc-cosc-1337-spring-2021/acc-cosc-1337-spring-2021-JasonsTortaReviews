@@ -36,35 +36,52 @@ void TicTacToe::display_board()const
 void TicTacToe::mark_board(int position)
 {
 	pegs[position - 1] = player;
+	
 	setNextPlayer();
 
 }
 
 void TicTacToe::setNextPlayer()
 {
-	if(player == "X")
+	if(player == "X"||player=="x")
 	{
 		player = "O";
 	}
-	else if (player == "O")
+	else if (player == "O"||player=="o")
 	{
 		player = "X";
 	}
-	// else 
-	// {
-	// 	cout<<"Bruh Enter Something Valid"<<endl;
-	// }
+	
 }
 
 
 void TicTacToe::start_game(std::string first_player)
 {
+
+
+	this ->player  = first_player;
+
+	clearBoard();
+
+
+
+
+
+	
+
 	if(first_player == "X" || first_player == "O"|| first_player == "x" || first_player == "o")
 	{
-		first_player = player;
+		this->player  = first_player;
 		clearBoard();
+		
 	}
-	
+	else if(first_player!="X"||first_player!="O"||first_player!="x"||first_player!="o")
+	{
+		cout<<"BRuh ENter Something Valid!"<<endl;
+		
+
+	}
+
 }
 
 void TicTacToe::clearBoard()
