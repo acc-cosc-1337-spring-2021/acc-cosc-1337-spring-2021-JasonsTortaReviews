@@ -2,10 +2,26 @@
 
 int main() 
 {
-	string first_player  ;
-	TicTacToe game_board ;
+	string first_player;
+	TicTacToe game_board;
 	string second_player; 
+
 	cout<<"Player - 1 choose your Mark ( X or O ): ";cin>>first_player;cout<<endl;
+	
+	if (first_player=="x")
+	{
+		first_player = "X";
+	}
+	else if (first_player == "o")
+	{
+		first_player = "O";
+	}
+
+	while(first_player != "X" && first_player!=  "O")
+	{
+		cout<<"Mark can only be X or O !"<<endl;
+		cout<<endl<<"Now Try Again Choose Your Mark: ";cin>>first_player;cout<<endl;
+	}
 
 	if(first_player == "X" || first_player == "x")
 	{
@@ -26,24 +42,32 @@ int main()
 	string continue_;
 	do
 	{
-		int player_1_position;
-
-		cout<<"Enter your First Move (1-9): "<<game_board.get_player();cin>>player_1_position;cout<<endl;
-
-		game_board.mark_board(player_1_position);
-
 		game_board.display_board();
-
-		cout<<"To Place Again Press {Y} to Quit press {Q}";cin>>continue_;cout<<endl;
-		if(game_board.game_over() == true )
+		do
 		{
-			cout<<"Game Over!"<<endl;
-			break;
-		}
-		
+			
+			int player_position;
 
-	}while(continue_ == "y"||continue_ == "Y");
+			do
+			{
+				cout<<endl<<endl<<"Enter your Move (1-9): Player --> "<<game_board.get_player()<<"   ";cin>>player_position;cout<<endl;
 
+			}while(!(player_position<=9 && player_position>= 1));
+			cout<<"Updating Board..."<<endl;
+			game_board.mark_board(player_position);
+			
+
+			game_board.display_board();
+
+		}while(!(game_board.game_over()));
+	
+
+		cout<<endl<<"If you would like a rematch simply press < Y > or < N > to QUIT!!: ";cin>>continue_;cout<<endl;
+
+		cout<<"Loading NEW GAME ...."<<endl;
+
+
+	}while(continue_ == "y"||"Y"||"Yes");
 
 	return 0;
 }
