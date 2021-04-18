@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
 #include "tic_tac_toe.h"
+#include "tic_tac_toe_manager.h"
 
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
@@ -280,51 +281,74 @@ TEST_CASE("Verify Test Configuration", "verification") {
 
 TEST_CASE("Verify if TicTacToeManager works")
  {
- 	TTTManager manager;
- 	TicTacToe match;
- 	int o, x, t;
- 
- 	match.start_game("X");
+ 	TicTacToe Game;
+	TicTacToeManager manager;
+	int x = 0;
+	int o = 0;
+	int t = 0;
 
- 	match.mark_board(1);
+	Game.start_game("X");
 
- 	match.mark_board(2);
+	Game.mark_board(1);
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(4);
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(2);
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(5);
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(3);
+	REQUIRE(Game.game_over()== true);
 
- 	match.mark_board(5);
+	REQUIRE(Game.get_winner() == "X");
 
- 	match.mark_board(4);
+	manager.saved_games(Game);
 
- 	match.mark_board(9);
+	Game.start_game("O");
 
- 	REQUIRE(match.game_over()== true);
- 	manager.saved_games(match);
- 	match.get_winner();
+	Game.mark_board(1);
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(4);
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(2);
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(5);
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(3);
+	REQUIRE(Game.game_over()== true);
 
- 	match.start_game("O");
- 	match.mark_board(1);
- 	match.mark_board(2);
- 	match.mark_board(5);
- 	match.mark_board(4);
- 	match.mark_board(9);
- 	REQUIRE(match.game_over()== true);
- 	manager.saved_games(match);
- 	match.get_winner();
+	REQUIRE(Game.get_winner() == "O");
 
- 	match.start_game(player);
- 	match.mark_board(1);
- 	match.mark_board(2);
- 	match.mark_board(3);
- 	match.mark_board(4);
- 	match.mark_board(6);
- 	match.mark_board(5);
- 	match.mark_board(7);
- 	match.mark_board(9);
- 	match.mark_board(8);
- 	REQUIRE(match.game_over()== true);
- 	manager.saved_games(match);
- 	match.get_winner();
- 	manager.get_winner_total(o,x,t);
- 	REQUIRE(o == 1);
- 	REQUIRE(x == 1);
- 	REQUIRE(t == 1);
+	manager.saved_games(Game);
+
+	Game.start_game("X");
+
+	Game.mark_board(3); // X
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(1); // O
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(4); // X
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(2); // O
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(5); // X
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(6); // O
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(8); // X
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(7); // O
+	REQUIRE(Game.game_over() == false);
+	Game.mark_board(9); // X
+	REQUIRE(Game.game_over() == true);
+
+	REQUIRE(Game.get_winner() == "C");
+
+	manager.saved_games(Game);
+
+	manager.get_winner_total(o,x,t);
+
+	REQUIRE(o == 1);
+	REQUIRE(x == 1);
+	REQUIRE(t == 1);
  }

@@ -34,21 +34,8 @@ class TicTacToeManager
 		int tie = 0;
 
 
-		void update_winner_count(string winner)
-		{
-			if (winner == "X")
-			{
-				x_win++;
-			}
-			else if (winner == "O")
-			{
-				o_win++;
-			}
-			else 
-			{
-				tie++;
-			}
-		}
+		void update_winner_count(string winner);
+		
 
 };
 
