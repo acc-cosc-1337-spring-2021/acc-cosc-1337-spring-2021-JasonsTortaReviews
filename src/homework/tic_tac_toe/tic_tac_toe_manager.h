@@ -21,35 +21,15 @@ class TicTacToeManager
 
 		void get_winner_total(int& x , int& o , int& t);
 
-
-	
-
 	private: 
 
 		vector<TicTacToe> game; 
-		
-
+	
 		int x_win = 0;
 		int o_win = 0;
 		int tie = 0;
 
-
-		void update_winner_count(string winner)
-		{
-			if (winner == "X")
-			{
-				x_win++;
-			}
-			else if (winner == "O")
-			{
-				o_win++;
-			}
-			else 
-			{
-				tie++;
-			}
-		}
-
+		void update_winner_count(string winner);
 };
 
 #endif 
