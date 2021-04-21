@@ -12,10 +12,14 @@ void TicTacToeManager::saved_games(TicTacToe b)
 
 ostream& operator << (ostream& out, const TicTacToeManager& manager)
 {
-	for (auto thing = manager.game.begin(); thing != manager.game.end(); ++thing) 
+	for(auto juego : manager.game)
 	{
-		out << *thing;
+		out<<juego<<endl;
 	}
+	out<<endl<<"   -------------ScoreBoard-------------"<<endl;
+	out<<"\tTotal Wins PLAYER - O : "<<manager.o_win<<endl;
+	out<<"\tTotal Wins PLAYER - X : "<<manager.x_win<<endl;
+	out<<"\tTotal TIES(HAHA LOSERS) : "<<manager.tie<<endl;
 
 	return out;
 

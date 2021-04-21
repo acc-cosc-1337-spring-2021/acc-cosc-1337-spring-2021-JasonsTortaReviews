@@ -11,23 +11,23 @@ ostream& operator<<(ostream& out, const TicTacToe& game)
 
 	out<<endl;
 
-	out<< " |~~~~~Tic-Tac-Toe~~~~~|"<<endl;
+	out<<"|~~~~Tic-Tac-Toe~~~~|"<<endl<<endl;
 	
-	out<<"\t\t  |\t  |"<<endl;
+	out<<"\t|   |"<<endl;
 
-	out<<"\t\t"<<game.pegs[0]<<" | "<<game.pegs[1]<<" | "<<game.pegs[2]<<endl;
+	out<<"      "<<game.pegs[0]<<" | "<<game.pegs[1]<<" | "<<game.pegs[2]<<endl;
 
-	out<<"\t------+-"<<"--+------"<<endl;
+	out<<"  ------+-"<<"--+------"<<endl;
 
-	out<<"\t\t"<<game.pegs[3]<<" | "<<game.pegs[4]<<" | "<<game.pegs[5]<<endl;
+	out<<"      "<<game.pegs[3]<<" | "<<game.pegs[4]<<" | "<<game.pegs[5]<<endl;
 
-	out<<"\t------+-"<<"--+------"<<endl;
+	out<<"  ------+-"<<"--+------"<<endl;
 
-	out<<"\t\t"<<game.pegs[6]<<" | "<<game.pegs[7]<<" | "<<game.pegs[8]<<endl;
+	out<<"      "<<game.pegs[6]<<" | "<<game.pegs[7]<<" | "<<game.pegs[8]<<endl;
 
-	out<<"\t\t  |\t  |"<<endl;
+	out<<"\t|   |"<<endl;
 
-	out<<" |~~~~~2 Player Game~~~~|";
+	out<<"|~~~~2 Player Game~~~~|"<<endl;
 
 	return out;
 
@@ -229,38 +229,10 @@ istream& operator >> (istream  &in , TicTacToe& game)
 {
     int position;
 	
-	// string first_player;
-	// string second_player; 
-
-	// cout<<"Player - 1 choose your Mark ( X or O ): ";cin>>first_player;cout<<endl;
 	
-	// if (first_player=="x")
-	// {
-	// 	first_player = "X";
-	// }
-	// else if (first_player == "o")
-	// {
-	// 	first_player = "O";
-	// }
-
-	// while(first_player != "X" && first_player!=  "O")
-	// {
-	// 	cout<<"Mark can only be X or O !"<<endl;
-	// 	cout<<endl<<"Now Try Again Choose Your Mark: ";cin>>first_player;cout<<endl;
-	// }
-
-	// if(first_player == "X" || first_player == "x")
-	// {
-	// 	second_player = "O";
-	// }
-	// else if (first_player == "O"|| first_player == "o" )
-	// {
-	// 	second_player = "X";
-	// }
-    cout <<game.get_player()<<"'s turn." <<"\n";
-    cout <<"Enter position from 1 to 9." <<"\n";
-    cout <<"Number picked: ";
-	in>>position;
+    cout<<endl<<"Enter your Move (1-9): Player --> "<<game.get_player()<<"   ";in>>position;cout<<endl;
+    
+	
     // User Input Validation for Position
 	while(position < 1 || position > 9)
 	{

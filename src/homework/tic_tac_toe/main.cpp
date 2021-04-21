@@ -1,27 +1,73 @@
 #include "tic_tac_toe.h"
-
+# include "tic_tac_toe_manager.h"
+#include <string>
 int main() 
 {
-	// string first_player;
-	// TicTacToe game_board;
-	// string second_player; 
-
-	// cout<<"Player - 1 choose your Mark ( X or O ): ";cin>>first_player;cout<<endl;
+	string first_player;
+	TicTacToe game_board;
+	TicTacToeManager manager;
+	int o , x , tie;
 	
-	// if (first_player=="x")
-	// {
-	// 	first_player = "X";
-	// }
-	// else if (first_player == "o")
-	// {
-	// 	first_player = "O";
-	// }
 
-	// while(first_player != "X" && first_player!=  "O")
-	// {
-	// 	cout<<"Mark can only be X or O !"<<endl;
-	// 	cout<<endl<<"Now Try Again Choose Your Mark: ";cin>>first_player;cout<<endl;
-	// }
+	string continue_ ;
+	
+	do
+	{
+		
+		cout<<"Player - 1 choose your Mark ( X or O ): ";cin>>first_player;cout<<endl;
+		while(!(first_player == "X" || first_player == "x" || first_player == "O" || first_player == "o"))
+		{
+			cout<<"Please Select a Valid Mark ( X or O ): ";cin>>first_player;cout<<endl;
+		}
+		if(first_player == "x")
+		{
+			first_player = "X";
+		}
+		else if(first_player == "o")
+		{
+			first_player = "O";
+		}
+		game_board.start_game(first_player);
+		do
+		{
+			cin>>game_board;
+			cout<<game_board<<endl;
+
+			
+		}while(!(game_board.game_over()));
+		manager.saved_games(game_board);
+		manager.get_winner_total(o,x,tie);
+		
+		
+
+		cout<<"-------------ScoreBoard-------------"<<endl<<manager<<endl;
+
+	
+
+		cout<<endl<<"If you would like a rematch simply press < Y > or < N > to QUIT!!: ";cin>>continue_;cout<<endl;
+		if (continue_ == "y"||continue_ =="Y"||continue_ =="Yes"||continue_ =="yeah")
+		{
+			cout<<"Loading NEW GAME ...."<<endl;
+		}
+		else
+		{
+			cout<<endl<<"-------GAME OVER-------"<<endl;
+		}
+		
+
+
+	}while(continue_ == "y"||continue_ == "Y"||continue_ == "Yes"||continue_ == "yeah");
+
+	return 0;
+}
+
+
+
+// 
+	
+	
+
+
 
 	// if(first_player == "X" || first_player == "x")
 	// {
@@ -35,39 +81,3 @@ int main()
 	// game_board.start_game(first_player);
 
 	// game_board.display_board();
-
-	
-	
-	// cout<<endl<<endl<<"Player - 1 < "<<first_player<<" >"<<"\t Player - 2 < "<<second_player<<" >"<<endl;
-	// string continue_;
-	// do
-	// {
-	// 	game_board.display_board();
-	// 	do
-	// 	{
-			
-	// 		int player_position;
-
-	// 		do
-	// 		{
-	// 			cout<<endl<<endl<<"Enter your Move (1-9): Player --> "<<game_board.get_player()<<"   ";cin>>player_position;cout<<endl;
-
-	// 		}while(!(player_position<=9 && player_position>= 1));
-	// 		cout<<"Updating Board..."<<endl;
-	// 		game_board.mark_board(player_position);
-			
-
-	// 		game_board.display_board();
-
-	// 	}while(!(game_board.game_over()));
-	
-
-	// 	cout<<endl<<"If you would like a rematch simply press < Y > or < N > to QUIT!!: ";cin>>continue_;cout<<endl;
-
-	// 	cout<<"Loading NEW GAME ...."<<endl;
-
-
-	// }while(continue_ == "y"||"Y"||"Yes");
-
-	return 0;
-}
