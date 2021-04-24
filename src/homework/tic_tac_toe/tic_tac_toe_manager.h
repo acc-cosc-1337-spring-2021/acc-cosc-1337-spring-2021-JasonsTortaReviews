@@ -9,13 +9,15 @@ using std::cout; using std::cin; using std::endl; using std::ostream;
 using std::vector;
 #include <string>
 using std::string;
+#include<memory>
+using std::unique_ptr;
 
 
 class TicTacToeManager
 {
 	public: 
 		
-		void saved_games(TicTacToe b);
+		void saved_games(unique_ptr<TicTacToe> &b);
 		
 		friend ostream& operator << (ostream& out, const TicTacToeManager& manager);
 
@@ -23,7 +25,7 @@ class TicTacToeManager
 
 	private: 
 
-		vector<TicTacToe> game; 
+		vector <unique_ptr<TicTacToe>> game; 
 	
 		int x_win = 0;
 		int o_win = 0;

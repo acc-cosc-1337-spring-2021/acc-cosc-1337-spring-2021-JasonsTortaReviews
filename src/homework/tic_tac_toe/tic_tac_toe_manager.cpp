@@ -3,18 +3,20 @@
 #include "tic_tac_toe.h"
 
 
-void TicTacToeManager::saved_games(TicTacToe b)
+void TicTacToeManager::saved_games(std::unique_ptr<TicTacToe> &b)
 {
-	game.push_back(b);
-	update_winner_count(b.get_winner());
+	string winner;
+    winner = b->get_winner();
+    update_winner_count(winner);
+    game.push_back(std::move(b));  
 	
 }
 
 ostream& operator << (ostream& out, const TicTacToeManager& manager)
 {
-	for(auto juego : manager.game)
+	for(auto &juego : manager.game)
 	{
-		out<<juego<<endl;
+		out<<*juego<<endl;
 	}
 	out<<endl<<"   -------------ScoreBoard-------------"<<endl;
 	out<<"\tTotal Wins PLAYER - O : "<<manager.o_win<<endl;
