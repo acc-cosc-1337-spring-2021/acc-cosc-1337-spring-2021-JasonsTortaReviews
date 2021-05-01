@@ -6,11 +6,16 @@
 #include <string>
 #include <vector>
 
+
 class Classic_TTT : public TicTacToe
 {
 public:
     
     Classic_TTT() : TicTacToe(3){}
+    Classic_TTT(vector<string> p, string win):TicTacToe(p, win){}
+
+     
+    
 
 
 

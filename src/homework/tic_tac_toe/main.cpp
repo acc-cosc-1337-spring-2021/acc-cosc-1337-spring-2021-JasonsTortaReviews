@@ -3,13 +3,15 @@
 #include <string>
 #include "tic_tac_toe_3.h"
 #include "tic_tac_toe_4.h"
+#include "tic_tac_toe_data.h"
 
 using std::make_unique; using std::unique_ptr;
 int main() 
 {
 	string first_player;
 	unique_ptr<TicTacToe> game_board;
-	TicTacToeManager manager;
+	AllGameData game_data;
+	TicTacToeManager manager = TicTacToeManager(game_data);
 	int o , x , tie;
 
 

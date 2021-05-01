@@ -5,6 +5,7 @@
 #include <iostream>
 using std::cout; using std::cin; using std::endl; using std::ostream;
 #include "tic_tac_toe.h"
+#include "tic_tac_toe_data.h"
 #include <vector>
 using std::vector;
 #include <string>
@@ -16,6 +17,9 @@ using std::unique_ptr;
 class TicTacToeManager
 {
 	public: 
+		TicTacToeManager() = default;
+		TicTacToeManager(AllGameData & data);
+		~TicTacToeManager();
 		
 		void saved_games(unique_ptr<TicTacToe> &b);
 		
@@ -23,9 +27,10 @@ class TicTacToeManager
 
 		void get_winner_total(int& x , int& o , int& t);
 
-	private: 
 
-		vector <unique_ptr<TicTacToe>> game; 
+	private: 
+		AllGameData database;
+		vector<unique_ptr<TicTacToe>> game; 
 	
 		int x_win = 0;
 		int o_win = 0;

@@ -13,6 +13,7 @@ public:
     
     
     Connect4() : TicTacToe(4){}
+    Connect4(vector<string> p , string winner):TicTacToe(p, winner){};
 
 
 private: 

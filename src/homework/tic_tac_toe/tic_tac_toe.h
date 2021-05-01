@@ -12,8 +12,15 @@ class TicTacToe
 {
 	
 public: 
-	TicTacToe(){}
+	TicTacToe(){} 
 	TicTacToe(int SIZE) : pegs(SIZE*SIZE," "){}
+	TicTacToe(vector <string> p , string win)
+	{
+		pegs = p;
+		winner = win;
+	}
+
+	vector<string>const get_pegs(){return pegs;};
 	
 	bool game_over();//done
 	

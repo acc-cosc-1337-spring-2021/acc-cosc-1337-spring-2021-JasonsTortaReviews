@@ -295,3 +295,4 @@ istream& operator >> (istream  &in , TicTacToe& game)
     return in;
 
 }
+

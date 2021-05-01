@@ -50,3 +50,16 @@ void TicTacToeManager::update_winner_count(string winner)
 		tie++;
 	}
 }
+TicTacToeManager::TicTacToeManager(AllGameData &data)
+{
+	database = data;
+	game = data.get_games();
+
+}
+
+TicTacToeManager::~TicTacToeManager()
+{
+	cout<<endl<< " SAVING GAMES ..."<<endl;
+	database.saved_games(game);
+	
+}
