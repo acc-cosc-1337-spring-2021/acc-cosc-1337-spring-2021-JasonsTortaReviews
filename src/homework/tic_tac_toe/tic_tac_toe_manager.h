@@ -29,8 +29,8 @@ class TicTacToeManager
 
 
 	private: 
+		vector <unique_ptr<TicTacToe>> games; 
 		AllGameData database;
-		vector<unique_ptr<TicTacToe>> game; 
 	
 		int x_win = 0;
 		int o_win = 0;

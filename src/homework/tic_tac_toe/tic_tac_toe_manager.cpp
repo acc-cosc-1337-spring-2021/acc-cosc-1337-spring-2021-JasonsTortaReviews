@@ -5,16 +5,14 @@
 
 void TicTacToeManager::saved_games(std::unique_ptr<TicTacToe> &b)
 {
-	string winner;
-    winner = b->get_winner();
-    update_winner_count(winner);
-    game.push_back(std::move(b));  
+	update_winner_count(b -> get_winner());
+	games.push_back(std::move(b));
 	
 }
 
 ostream& operator << (ostream& out, const TicTacToeManager& manager)
 {
-	for(auto &juego : manager.game)
+	for(auto &juego : manager.games)
 	{
 		out<<*juego<<endl;
 	}
@@ -50,16 +48,20 @@ void TicTacToeManager::update_winner_count(string winner)
 		tie++;
 	}
 }
-TicTacToeManager::TicTacToeManager(AllGameData &data)
+TicTacToeManager::TicTacToeManager(AllGameData &data) : database{data}
 {
-	database = data;
-	game = data.get_games();
+	
+	games = data.get_games();
+	for(auto& game : games)
+	{
+		update_winner_count(game -> get_winner());
+	}
 
 }
 
 TicTacToeManager::~TicTacToeManager()
 {
-	cout<<endl<< " SAVING GAMES ..."<<endl;
-	database.saved_games(game);
+	cout<<endl<< "   SAVING GAMES ..."<<endl;
+	database.saved_games(games);
 	
 }

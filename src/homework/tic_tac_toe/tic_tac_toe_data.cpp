@@ -11,50 +11,47 @@ using std::make_unique;
 void AllGameData::saved_games(const vector<unique_ptr<TicTacToe>> & games)
 {
     ofstream out_file;
-    cout<<"Opening File ... "<<endl;
-    out_file.open("saved_games_winner.dat");
+    
+    out_file.open(TIC_TAC_TOE_DATA_FILE);
     if(out_file.is_open())
     {
         for(auto& game : games)
         {
             for(auto &peg : game ->get_pegs())
             {
-                out_file<<peg<<endl;
+                out_file<<peg;
             }
 
-            out_file<<game->get_winner();
             out_file<<endl;
+            out_file<<game-> get_winner();
         }
-        out_file.close();
+        
     }
-    else cout<<"ERROR UNABLE TO OPEN FILE"<<endl;
+    // else {cout<<"ERROR UNABLE TO OPEN FILE"<<endl;}
+    out_file.close();
 }
 
 vector<unique_ptr<TicTacToe>>AllGameData::get_games()
 {
     ifstream in_file;
-    cout<<"Opening File ... "<<endl;
+    
     string line;
-    string winner;
     vector <unique_ptr<TicTacToe>> game_board;
-    in_file.open("saved_games_winner.dat");
+    in_file.open(TIC_TAC_TOE_DATA_FILE);
 
     if(in_file.is_open())
     {
         while(getline(in_file, line))
         {
             vector<string> pegs;
-            auto length = line.length();
-            size_t i = 0;
-            for(size_t i = 0; i < length -1; ++i)
+            for(size_t i = 0; i <(line.size() - 1); ++i)
             {
-                string character = " ";
-                character += line[i];
+                string character(1 , line[i]);
                
                 pegs.push_back(character);
             }
 
-            winner = line[i];
+             string winner{line[line.size()-1]}; 
 
             
             unique_ptr<TicTacToe> game;
@@ -66,12 +63,16 @@ vector<unique_ptr<TicTacToe>>AllGameData::get_games()
             {
                 game = make_unique<Connect4>(pegs,winner);
             }
-            game_board.push_back(game);
+            
+            
+
+            // game_board.push_back(std::move(game)); CAUSES ERROR
+     
         }
 
         in_file.close();
     }
-    else{cout<<"ERROR FILE NOT FOUND"<<endl;}
+    
     return game_board;
 }
 
